@@ -11,6 +11,8 @@ public class YardsManager : MonoBehaviour
     private float yardsTraveled;
     private bool isTraveling;
 
+    public const string prefyards = "prefyards";
+
     private void Awake()
     {
         Instance = this;
@@ -34,5 +36,22 @@ public class YardsManager : MonoBehaviour
     public void StartScript()
     {
         isTraveling = true;
+    }
+
+    public bool CheckNewHighscore()
+    {
+        if ((int)yardsTraveled > PlayerPrefs.GetInt(prefyards))
+        {
+            // new highscore
+            PlayerPrefs.SetInt(prefyards, (int)yardsTraveled);
+            Debug.Log("new highscore: " + (int)yardsTraveled);
+            return true;
+        }
+        else
+        {
+            // no new highscore
+            Debug.Log("no new highscore");
+            return false;
+        }
     }
 }

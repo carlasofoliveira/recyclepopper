@@ -24,6 +24,7 @@ public class BoatCollision : MonoBehaviour
             {
                 case EntityType.EntityTypes.booty:
                     // add score
+
                     Destroy(collision.gameObject);
                     break;
                 case EntityType.EntityTypes.rock:

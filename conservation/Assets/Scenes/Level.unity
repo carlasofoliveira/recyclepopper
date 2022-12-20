@@ -1224,6 +1224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverPanel: {fileID: 1607802795}
+  youLostText: {fileID: 972615424}
 --- !u!114 &1645144561
 MonoBehaviour:
   m_ObjectHideFlags: 0
