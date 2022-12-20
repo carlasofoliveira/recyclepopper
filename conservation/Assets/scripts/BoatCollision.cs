@@ -29,6 +29,7 @@ public class BoatCollision : MonoBehaviour
                 case EntityType.EntityTypes.rock:
                     // lose
                     Debug.Log("You lost");
+                    FinishGameManager.Instance.FinishGame();
                     break;
             }
         }
