@@ -22,5 +22,7 @@ public class StartGameManager : MonoBehaviour
     private void StartGame()
     {
         SpawnManager.Instance.StartScript();
+        YardsManager.Instance.StartScript();
+        enabled = false;  // this disables the script
     }
 }
