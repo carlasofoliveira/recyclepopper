@@ -24,7 +24,7 @@ public class BoatCollision : MonoBehaviour
             {
                 case EntityType.EntityTypes.booty:
                     // add score
-
+                    PlayerMoney.Instance.AddPaper(1);
                     Destroy(collision.gameObject);
                     break;
                 case EntityType.EntityTypes.rock:

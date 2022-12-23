@@ -10,6 +10,7 @@ public class FinishGameManager : MonoBehaviour
 
     [SerializeField] private GameObject gameOverPanel;
     [SerializeField] private TextMeshProUGUI youLostText;
+    [SerializeField] private TextMeshProUGUI paperText;
 
     // Start is called before the first frame update
     void Start()
@@ -33,12 +34,14 @@ public class FinishGameManager : MonoBehaviour
         Time.timeScale = 0;
         gameOverPanel.SetActive(true);
 
-        //PlayerMoney.Instance.SaveMoney();
         bool isNewHighScore = YardsManager.Instance.CheckNewHighscore();
         if (isNewHighScore)
         {
             youLostText.text = "New Highscore!";
         }
+
+        int paperCollectedThisGame = PlayerMoney.Instance.GetAndSavePaper();
+        paperText.text = "Paper: " + paperCollectedThisGame;
     }
 
     public void RestartGame()
