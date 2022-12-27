@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class BoatMovement : MonoBehaviour
 {
+    public static BoatMovement Instance;
+
     private Rigidbody2D rb;
     private Camera mainCamera;
 
     [SerializeField] private float xMargin = 2;
     [SerializeField] private float boatSpeed = 50;
 
+    private bool canMove;
+
     private void Awake()
     {
+        Instance = this;
+
         rb = GetComponent<Rigidbody2D>();
         mainCamera = Camera.main;
     }
@@ -25,6 +31,9 @@ public class BoatMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove)
+            return;
+
         int dirX = 0;
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -67,5 +76,17 @@ public class BoatMovement : MonoBehaviour
         float posX = transform.position.x;
         posX = Mathf.Clamp(posX, -xMargin, xMargin);
         transform.position = new Vector3(posX, transform.position.y, transform.position.z);
+    }
+
+    public void StartScript()
+    {
+        canMove = true;
+
+        int strongerOarsLevel = PlayerPrefs.GetInt(ShopItem.ShopItems.strongerOars.ToString());
+
+        if (strongerOarsLevel > 0)
+        {
+            boatSpeed += strongerOarsLevel * 50;
+        }
     }
 }

@@ -8,7 +8,7 @@ public class PlayerMoney : MonoBehaviour
 
     public static PlayerMoney Instance;
 
-    public const string prefpaper = "prefpaper";
+    public const string prefpaper = "prefPaper";
 
     private void Awake()
     {
@@ -33,11 +33,22 @@ public class PlayerMoney : MonoBehaviour
         currentPaper += paperToAdd;
     }
 
+    public void AddPaperAndSave(int paperToAdd)
+    {
+        currentPaper += paperToAdd;
+        PlayerPrefs.SetInt(prefpaper, currentPaper);
+    }
+
     public int GetAndSavePaper()
     {
         int paperCollectedThisGame = currentPaper - PlayerPrefs.GetInt(prefpaper);
         PlayerPrefs.SetInt(prefpaper, currentPaper);
 
         return paperCollectedThisGame;
+    }
+
+    public int ReturnCurrentpaper()
+    {
+        return currentPaper;
     }
 }
