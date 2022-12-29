@@ -9,6 +9,7 @@ public class BoatMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Camera mainCamera;
 
+    [SerializeField] private float yMarginForInput = 2;
     [SerializeField] private float xMargin = 2;
     [SerializeField] private float boatSpeed = 50;
 
@@ -52,26 +53,31 @@ public class BoatMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 30);
             }
         }
-        else
+        else // mobile part
         {
             if (Input.touches.Length > 0) {
                 Vector3 touchPosition = Input.touches[0].position;
                 touchPosition = mainCamera.ScreenToWorldPoint(touchPosition);
 
-                if (touchPosition.x > 0)
+                if (touchPosition.y < yMarginForInput)
                 {
-                    dirX = 1;
-                    transform.rotation = Quaternion.Euler(0, 0, -30);
-                }
-                else
-                {
-                    dirX = -1;
-                    transform.rotation = Quaternion.Euler(0, 0, 30);
-                }
+                    if (touchPosition.x > 0)
+                    {
+                        dirX = 1;
+                        transform.rotation = Quaternion.Euler(0, 0, -30);
+                    }
+                    else
+                    {
+                        dirX = -1;
+                        transform.rotation = Quaternion.Euler(0, 0, 30);
+                    }
+                } 
+
+                
             }
         }
 
-        rb.velocity = new Vector2(dirX * boatSpeed * Time.deltaTime, 0);
+        rb.velocity = new Vector2(dirX * boatSpeed * Time.fixedDeltaTime, 0);
 
         float posX = transform.position.x;
         posX = Mathf.Clamp(posX, -xMargin, xMargin);
