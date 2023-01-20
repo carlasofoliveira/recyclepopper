@@ -32,6 +32,10 @@ public class BoatCollision : MonoBehaviour
                     Debug.Log("You lost");
                     FinishGameManager.Instance.FinishGame();
                     break;
+                case EntityType.EntityTypes.factory:
+                    // pause and show store
+                    ShopManager.Instance.DisplayStore();
+                    break;
             }
         }
     }

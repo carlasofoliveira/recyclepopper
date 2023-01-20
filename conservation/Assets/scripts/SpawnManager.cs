@@ -62,7 +62,19 @@ public class SpawnManager : MonoBehaviour
         GameObject entityToSpawn = entitiesPrefabs[Random.Range(0, entitiesPrefabs.Length)];
         spawnPosition.x = Random.Range(-xMargin, xMargin);
 
-        GameObject spawnedEntity = Instantiate(entityToSpawn, spawnPosition, Quaternion.identity);
-        spawnedEntity.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -entitiesSpeed);
+        GameObject spawnedEntity;
+
+        if ((entityToSpawn.GetComponent<EntityType>().entityType == EntityType.EntityTypes.factory) && (PlayerMoney.Instance.ReturnCurrentpaper() > 10))
+        {
+            spawnedEntity = Instantiate(entityToSpawn, spawnPosition, Quaternion.identity);
+            spawnedEntity.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -entitiesSpeed);
+            return;
+        }
+
+        if (entityToSpawn.GetComponent<EntityType>().entityType != EntityType.EntityTypes.factory)
+        {
+            spawnedEntity = Instantiate(entityToSpawn, spawnPosition, Quaternion.identity);
+            spawnedEntity.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -entitiesSpeed);
+        }
     }
 }

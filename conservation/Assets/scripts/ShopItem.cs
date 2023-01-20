@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
     [Header("Texts")]
     [SerializeField] private TextMeshProUGUI itemNameText;
     [SerializeField] private TextMeshProUGUI itemPriceText;
+    [SerializeField] private Sprite betterShoeSprite;
+    [SerializeField] private Image player;
 
     [Header("Values")]
     public ShopItems ItemType;
@@ -52,6 +55,8 @@ public class ShopItem : MonoBehaviour
 
             UpdateItemUI();
             ShopManager.Instance.UpdateMoneyInShopUI();
+
+            player.overrideSprite = betterShoeSprite;
         }
     }
 
