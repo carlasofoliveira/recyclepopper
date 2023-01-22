@@ -64,7 +64,7 @@ public class SpawnManager : MonoBehaviour
 
         GameObject spawnedEntity;
 
-        if ((entityToSpawn.GetComponent<EntityType>().entityType == EntityType.EntityTypes.factory) && (PlayerMoney.Instance.ReturnCurrentpaper() > 10))
+        if ((entityToSpawn.GetComponent<EntityType>().entityType == EntityType.EntityTypes.factory) && (PlayerMoney.Instance.ReturnCurrentPlastic() > 10))
         {
             spawnedEntity = Instantiate(entityToSpawn, spawnPosition, Quaternion.identity);
             spawnedEntity.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -entitiesSpeed);

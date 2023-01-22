@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class PlayerMoney : MonoBehaviour
 {
-    [SerializeField] private int currentPaper;
+    [SerializeField] private int currentPlastic;
 
     public static PlayerMoney Instance;
 
-    public const string prefpaper = "prefPaper";
+    public const string prefPlastic = "prefPlastic";
 
     private void Awake()
     {
         Instance = this;
-        currentPaper = PlayerPrefs.GetInt(prefpaper);
+        currentPlastic = PlayerPrefs.GetInt(prefPlastic);
     }
 
     // Start is called before the first frame update
@@ -28,27 +28,27 @@ public class PlayerMoney : MonoBehaviour
         
     }
 
-    public void AddPaper(int paperToAdd)
+    public void AddPlastic(int plasticToAdd)
     {
-        currentPaper += paperToAdd;
+        currentPlastic += plasticToAdd;
+        PlayerPrefs.SetInt(prefPlastic, currentPlastic);
     }
 
-    public void AddPaperAndSave(int paperToAdd)
+    public void AddPlasticAndSave(int plasticToAdd)
     {
-        currentPaper += paperToAdd;
-        PlayerPrefs.SetInt(prefpaper, currentPaper);
+        currentPlastic += plasticToAdd;
+        PlayerPrefs.SetInt(prefPlastic, currentPlastic);
     }
 
-    public int GetAndSavePaper()
+    public int GetAndSavePlastic()
     {
-        int paperCollectedThisGame = currentPaper - PlayerPrefs.GetInt(prefpaper);
-        PlayerPrefs.SetInt(prefpaper, currentPaper);
+        int plasticCollectedThisGame = PlayerPrefs.GetInt(prefPlastic);
 
-        return paperCollectedThisGame;
+        return plasticCollectedThisGame;
     }
 
-    public int ReturnCurrentpaper()
+    public int ReturnCurrentPlastic()
     {
-        return currentPaper;
+        return currentPlastic;
     }
 }

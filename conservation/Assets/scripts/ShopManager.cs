@@ -31,18 +31,18 @@ public class ShopManager : MonoBehaviour
 
     public void UpdateMoneyInShopUI()
     {
-        moneyInShopText.text = PlayerMoney.Instance.ReturnCurrentpaper() + " PAPER";
+        moneyInShopText.text = PlayerMoney.Instance.ReturnCurrentPlastic() + " PAPER";
     }
 
     public void AddPaperDebug()
     {
-        PlayerMoney.Instance.AddPaperAndSave(1000);
+        PlayerMoney.Instance.AddPlasticAndSave(1000);
         UpdateMoneyInShopUI();
     }
 
     public void DisplayStore()
     {
-        PlayerMoney.Instance.GetAndSavePaper();
+        PlayerMoney.Instance.GetAndSavePlastic();
         Time.timeScale = 0;
         StorePanel.SetActive(true);
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

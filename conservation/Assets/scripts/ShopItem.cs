@@ -46,12 +46,12 @@ public class ShopItem : MonoBehaviour
 
     public void BuyItem()
     {
-        if (itemLevel < itemLevelMax && PlayerMoney.Instance.ReturnCurrentpaper() >= itemPrice)
+        if (itemLevel < itemLevelMax && PlayerMoney.Instance.ReturnCurrentPlastic() >= itemPrice)
         {
             itemLevel++;
             PlayerPrefs.SetInt(ItemType.ToString(), itemLevel);
 
-            PlayerMoney.Instance.AddPaperAndSave(-itemPrice);
+            PlayerMoney.Instance.AddPlasticAndSave(-itemPrice);
 
             UpdateItemUI();
             ShopManager.Instance.UpdateMoneyInShopUI();

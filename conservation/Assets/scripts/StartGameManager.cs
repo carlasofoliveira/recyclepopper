@@ -16,7 +16,7 @@ public class StartGameManager : MonoBehaviour
         else
         {
             SpawnManager.Instance.StartScript();
-            YardsManager.Instance.StartScript();
+            PlasticsManager.Instance.StartScript();
             BoatMovement.Instance.StartScript();
             //enabled = false;  // this disables the script
         }

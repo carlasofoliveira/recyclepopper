@@ -3,15 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class YardsManager : MonoBehaviour
+public class PlasticsManager : MonoBehaviour
 {
-    public static YardsManager Instance;
+    public static PlasticsManager Instance;
 
-    [SerializeField] private TextMeshProUGUI yardsText;
-    private float yardsTraveled;
+    [SerializeField] private TextMeshProUGUI plasticText;
+    private float plasticCollected;
     private bool isTraveling;
 
-    public const string prefyards = "prefyards";
+    public const string prefPlastic = "prefPlastic";
 
     private void Awake()
     {
@@ -29,8 +29,8 @@ public class YardsManager : MonoBehaviour
     {
         if (!isTraveling)
             return;
-        yardsTraveled += Time.deltaTime * 5;
-        yardsText.text = (int)yardsTraveled + " yd";
+        plasticText.text = PlayerPrefs.GetInt(prefPlastic) + " plastic";
+        
     }
 
     public void StartScript()
@@ -40,11 +40,11 @@ public class YardsManager : MonoBehaviour
 
     public bool CheckNewHighscore()
     {
-        if ((int)yardsTraveled > PlayerPrefs.GetInt(prefyards))
+        if ((int)plasticCollected > PlayerPrefs.GetInt(prefPlastic))
         {
             // new highscore
-            PlayerPrefs.SetInt(prefyards, (int)yardsTraveled);
-            Debug.Log("new highscore: " + (int)yardsTraveled);
+            PlayerPrefs.SetInt(prefPlastic, (int)plasticCollected);
+            Debug.Log("new highscore: " + (int)plasticCollected + " plastic");
             return true;
         }
         else
