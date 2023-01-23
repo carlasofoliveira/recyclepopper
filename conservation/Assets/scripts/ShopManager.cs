@@ -31,7 +31,7 @@ public class ShopManager : MonoBehaviour
 
     public void UpdateMoneyInShopUI()
     {
-        moneyInShopText.text = PlayerMoney.Instance.ReturnCurrentPlastic() + " PAPER";
+        moneyInShopText.text = PlayerMoney.Instance.ReturnCurrentPlastic() + " PLASTIC";
     }
 
     public void AddPaperDebug()
