@@ -17,7 +17,7 @@ public class ShopItem : MonoBehaviour
     public ShopItems ItemType;
     public enum ShopItems
     {
-        strongerOars,
+        betterTenis,
         placeholder
     }
 
@@ -65,12 +65,12 @@ public class ShopItem : MonoBehaviour
         itemLevel = PlayerPrefs.GetInt(ItemType.ToString());
 
         itemNameText.text = "LV. " + itemLevel + " " + itemName;
-        itemPriceText.text = itemPrice + " G";
+        itemPriceText.text = itemPrice + " P";
 
         if (itemLevel == itemLevelMax)
         {
             itemNameText.text = "MAX LV: " + itemName;
-            itemPriceText.text = "0 G";
+            itemPriceText.text = "0 P";
         }
     }
 }

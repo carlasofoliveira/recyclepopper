@@ -2,16 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoatMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour
 {
-    public static BoatMovement Instance;
+    public static PlayerMovement Instance;
 
     private Rigidbody2D rb;
     private Camera mainCamera;
 
     [SerializeField] private float yMarginForInput = 2;
     [SerializeField] private float xMargin = 2;
-    [SerializeField] private float boatSpeed = 50;
+    [SerializeField] private float playerSpeed = 600;
 
     private bool canMove;
 
@@ -53,7 +53,7 @@ public class BoatMovement : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 30);
             }
         }
-        else // mobile part
+        else if (Application.isMobilePlatform)
         {
             if (Input.touches.Length > 0) {
                 Vector3 touchPosition = Input.touches[0].position;
@@ -76,8 +76,24 @@ public class BoatMovement : MonoBehaviour
                 
             }
         }
+        else
+        {
+            // wasd input
+            if (Input.GetKey(KeyCode.D))
+            {
+                dirX = 1;
+                transform.rotation = Quaternion.Euler(0, 0, -30);
+            }
+            else if (Input.GetKey(KeyCode.A))
+            {
+                dirX = -1;
+                transform.rotation = Quaternion.Euler(0, 0, 30);
+            }
+        }
 
-        rb.velocity = new Vector2(dirX * boatSpeed * Time.fixedDeltaTime, 0);
+        int fasterSpeed = PlayerPrefs.GetInt(ShopItem.ShopItems.betterTenis.ToString());
+
+        rb.velocity = new Vector2(dirX * (playerSpeed + (fasterSpeed * .5f)) * Time.fixedDeltaTime, 0);
 
         float posX = transform.position.x;
         posX = Mathf.Clamp(posX, -xMargin, xMargin);
@@ -88,11 +104,11 @@ public class BoatMovement : MonoBehaviour
     {
         canMove = true;
 
-        int strongerOarsLevel = PlayerPrefs.GetInt(ShopItem.ShopItems.strongerOars.ToString());
+        int fasterSpeed = PlayerPrefs.GetInt(ShopItem.ShopItems.betterTenis.ToString());
 
-        if (strongerOarsLevel > 0)
+        if (fasterSpeed > 0)
         {
-            boatSpeed += strongerOarsLevel * 50;
+            playerSpeed += fasterSpeed * 50;
         }
     }
 }

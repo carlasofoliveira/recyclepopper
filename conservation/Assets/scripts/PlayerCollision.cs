@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BoatCollision : MonoBehaviour
+public class PlayerCollision : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
@@ -22,12 +22,12 @@ public class BoatCollision : MonoBehaviour
         {
             switch (collision.GetComponent<EntityType>().entityType)
             {
-                case EntityType.EntityTypes.booty:
+                case EntityType.EntityTypes.plastic:
                     // add score
                     PlayerMoney.Instance.AddPlastic(1);
                     Destroy(collision.gameObject);
                     break;
-                case EntityType.EntityTypes.rock:
+                case EntityType.EntityTypes.car:
                     // lose
                     Debug.Log("You lost");
                     FinishGameManager.Instance.FinishGame();

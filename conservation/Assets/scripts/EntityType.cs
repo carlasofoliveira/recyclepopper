@@ -6,8 +6,8 @@ public class EntityType : MonoBehaviour
 {
     public enum EntityTypes
     {
-        booty,
-        rock,
+        plastic,
+        car,
         factory
     }
     public EntityTypes entityType;

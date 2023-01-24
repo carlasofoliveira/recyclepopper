@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4251515257539399802}
   - component: {fileID: 1800154316647905967}
   m_Layer: 0
-  m_Name: Booty
+  m_Name: Plastic
   m_TagString: Entity
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
